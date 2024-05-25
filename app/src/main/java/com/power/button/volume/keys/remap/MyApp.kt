@@ -1,14 +1,17 @@
 package com.power.button.volume.keys.remap
 
+import android.app.Application
 import android.content.Context
-import androidx.multidex.MultiDexApplication
 import com.cioccarellia.ksprefs.KsPrefs
+import dagger.hilt.android.HiltAndroidApp
 
 /**
  * @Author: Muhammad Hasnain Altaf
  * @Date: 21/05/2024
  */
-class MyApp: MultiDexApplication(){
+
+@HiltAndroidApp
+class MyApp: Application(){
 
     companion object {
         lateinit var appContext: Context

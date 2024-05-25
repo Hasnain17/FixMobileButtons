@@ -1,0 +1,9 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/textViewEncription"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/baloo_bhaina_2"
+    android:padding="@dimen/_10sdp"
+    android:text="Default Action"
+    android:textColor="@color/black"
+    android:textSize="@dimen/_14ssp" />

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="actionList">
+        <item>Default Action</item>
+        <item>Turn off Screen</item>
+        <item>Open Power Menu</item>
+    </string-array>
+</resources>
