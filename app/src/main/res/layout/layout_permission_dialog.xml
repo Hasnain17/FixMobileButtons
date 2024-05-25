@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layoutDirection="ltr"
+    android:layout_marginHorizontal="@dimen/_10sdp"
+    android:elevation="@dimen/_10sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_dialog">
+    <ImageView
+        android:id="@+id/mtCancelExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="@string/image"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_cross_dialog"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/ivTop"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:src="@drawable/ic_image_permission"
+        android:layout_marginVertical="@dimen/_20sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <TextView
+        android:id="@+id/tvHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="@string/_permission_heading"
+        android:fontFamily="@font/baloo_bhaina_2_medium"
+        android:textSize="@dimen/_17ssp"
+        android:textColor="@color/textColor_0"
+        app:layout_constraintStart_toStartOf="@id/ivTop"
+        app:layout_constraintEnd_toEndOf="@id/ivTop"
+        app:layout_constraintTop_toBottomOf="@id/ivTop"/>
+
+    <TextView
+        android:id="@+id/tvBody"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:textAlignment="textStart"
+        android:text="@string/_permission_body"
+        android:fontFamily="@font/baloo_bhaina_2"
+        android:textSize="@dimen/_13ssp"
+        android:textColor="@color/gray_3"
+        app:layout_constraintStart_toStartOf="@id/tvHeading"
+        app:layout_constraintEnd_toEndOf="@id/tvHeading"
+        app:layout_constraintTop_toBottomOf="@id/tvHeading"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mtPermission"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        android:layout_marginVertical="@dimen/_10sdp"
+        android:text="@string/_enable_permission"
+        android:gravity="center"
+        app:rippleColor="@color/ripple_main_blue"
+        android:backgroundTint="@color/main_blue"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:textSize="@dimen/_14ssp"
+        app:cornerRadius="@dimen/_20sdp"
+        android:fontFamily="@font/baloo_bhaina_2_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvBody"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

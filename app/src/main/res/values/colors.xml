@@ -3,5 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="main_blue">#5D9DFF</color>
+    <color name="textColor_0">#1E1E1E</color>
+    <color name="gray_3">#555555</color>
+    <color name="ripple_main_blue">#505D9DFF</color>
+
 
 </resources>

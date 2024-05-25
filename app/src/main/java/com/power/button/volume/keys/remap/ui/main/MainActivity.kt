@@ -1,11 +1,17 @@
 package com.power.button.volume.keys.remap.ui.main
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.ImageView
 import androidx.activity.viewModels
 import com.app.hasnain.sample.mvvmdihilt.ui.base.BaseActivity
+import com.google.android.material.button.MaterialButton
 import com.power.button.volume.keys.remap.R
 import com.power.button.volume.keys.remap.databinding.ActivityMainBinding
 import com.power.button.volume.keys.remap.utils.showToast
@@ -29,6 +35,27 @@ class MainActivity : BaseActivity<ActivityMainBinding> () {
         }
 
         callForDropDown()
+    }
+
+    private fun callForPermissionDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.layout_permission_dialog)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window!!.attributes.windowAnimations = R.style.DialogFragmentAnimation
+
+        dialog.setCancelable(false)
+
+        dialog.findViewById<MaterialButton>(R.id.mtPermission).setOnClickListener{
+            showToast("click")
+        }
+
+        dialog.findViewById<ImageView>(R.id.mtCancelExit).setOnClickListener{
+            dialog.dismiss()
+        }
+
+        dialog.show()
+
     }
 
     private fun callForDropDown() {
@@ -86,5 +113,10 @@ class MainActivity : BaseActivity<ActivityMainBinding> () {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        callForPermissionDialog()
     }
 }

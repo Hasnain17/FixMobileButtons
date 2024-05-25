@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Fix Mobile Buttons</string>
+    <string name="image">Image</string>
+    <string name="_permission_heading">Accessibility Permission Required</string>
+    <string name="_permission_body">This App uses Accessibility permission to Perform Following Actions\n
+        <b>Actions:</b>\n
+        <b>1:</b> Open Power Menu\n
+        <b>2:</b> Turn Off Screen\n
+        <b>3:</b> Volume Buttons for Screen Locking\n
+        <b>4:</b> Keys Remap Service\n
+        Please enable Accessibility permission from Settings to perform the actions.</string>
+    <string name="_enable_permission">Enable Permission</string>
 </resources>
