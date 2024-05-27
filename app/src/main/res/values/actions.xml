@@ -4,5 +4,6 @@
         <item>Default Action</item>
         <item>Turn off Screen</item>
         <item>Open Power Menu</item>
+        <item>Do Nothing</item>
     </string-array>
 </resources>

@@ -10,4 +10,8 @@
         <b>4:</b> Keys Remap Service\n
         Please enable Accessibility permission from Settings to perform the actions.</string>
     <string name="_enable_permission">Enable Permission</string>
+
+    <string name="accessibility_service_label">Remap Keys</string>
+    <string name="service_description">This service allows the application to run in the background,
+        Hence, to get the best of this application, turn on the Service</string>
 </resources>
