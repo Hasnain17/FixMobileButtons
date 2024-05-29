@@ -1,11 +1,15 @@
 package com.power.button.volume.keys.remap.ui.main
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.media.AudioManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.MotionEvent
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
@@ -36,6 +40,15 @@ class MainActivity : BaseActivity<ActivityMainBinding> () {
 
     private lateinit var autoCompleteMinus:AutoCompleteTextView
 
+    private lateinit var audioManager: AudioManager
+    private var volumeDirection: Int = 0
+    private val volumeRunnable = object : Runnable {
+        override fun run() {
+            adjustVolume(volumeDirection)
+            binding.root.postDelayed(this, 50) // Adjust interval as needed
+        }
+    }
+
     private val mainViewModel: MainViewModel by viewModels()
     override fun getViewBinding(): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater)
@@ -50,9 +63,139 @@ class MainActivity : BaseActivity<ActivityMainBinding> () {
             binding.key=it
         }
 
+        // Initialize AudioManager
+        audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
+
+        // VOLUME UP
+        setupVolumeButton(binding.cVVolumeUp, AudioManager.ADJUST_RAISE)
+
+        // VOLUME DOWN
+        setupVolumeButton(binding.cVVolumeDown, AudioManager.ADJUST_LOWER)
+
         dialog= Dialog(this)
-        callForDropDown()
+        setUpDropDown()
+        initListeners()
     }
+
+    private fun initListeners() {
+
+        //POWER MENU WITH BUTTON
+        binding.cVPowerMenu.setOnClickListener {
+            try {
+                val intent = Intent(AccessibilityService.ACTION_SHOW_POWER_MENU)
+                sendBroadcast(intent)
+            }
+            catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+
+
+        //SCREEN OFF WITH BUTTON
+        binding.cVLock.setOnClickListener {
+            try {
+                val intent = Intent(AccessibilityService.ACTION_SHOW_SCREEN_LOCK)
+                sendBroadcast(intent)
+            }
+            catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+
+    }
+
+    private fun setupVolumeButton(button: View, direction: Int) {
+        button.setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    volumeDirection = direction
+                    adjustVolume(direction)
+                    v.postDelayed(volumeRunnable, 500) // Start delay for long press
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    v.removeCallbacks(volumeRunnable)
+                }
+            }
+            v.performClick()
+            true
+        }
+    }
+
+
+    private fun adjustVolume(direction: Int) {
+        try {
+            audioManager.adjustStreamVolume(
+                AudioManager.STREAM_MUSIC,
+                direction,
+                AudioManager.FLAG_SHOW_UI
+            )
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+
+
+
+    private fun setUpDropDown() {
+        val actions = resources.getStringArray(R.array.actionList)
+        arrayAdapter = ArrayAdapter(this, R.layout.drop_down_item, actions)
+
+        autoCompletePlus = binding.autoCompleteActionsPlus
+        autoCompleteMinus = binding.autoCompleteActionsMinus
+        autoCompletePlus.setAdapter(arrayAdapter)
+        autoCompleteMinus.setAdapter(arrayAdapter)
+
+
+        //PLUS
+        binding.autoCompleteActionsPlus.setOnItemClickListener{parent, _, postion,_->
+            when(postion){
+                0-> {
+                    showToast("Default Action")
+                    MyApp.prefs.push("eventIDPlus",0)
+                }
+                1-> {
+                    showToast("TURN OFF SCREEN")
+                    MyApp.prefs.push("eventIDPlus",1)
+                }
+                2-> {
+                    showToast("OPEN POWER MENU")
+                    MyApp.prefs.push("eventIDPlus",2)
+                }
+                3-> {
+                    showToast("DO NOTHING")
+                    MyApp.prefs.push("eventIDPlus",3)
+                }
+            }
+        }
+
+        //MINUS
+        binding.autoCompleteActionsMinus.setOnItemClickListener{parent, _, postion,_->
+            when(postion){
+                0-> {
+                    showToast("Default Action")
+                    MyApp.prefs.push("eventIDMinus",0)
+                }
+                1-> {
+                    showToast("TURN OFF SCREEN")
+                    MyApp.prefs.push("eventIDMinus",1)
+                }
+                2-> {
+                    showToast("OPEN POWER MENU")
+                    MyApp.prefs.push("eventIDMinus",2)
+                }
+                3-> {
+                    showToast("DO NOTHING")
+                    MyApp.prefs.push("eventIDMinus",3)
+
+                }
+            }
+        }
+
+    }
+
+
+
 
     private fun callForPermissionDialog() {
         dialog.setContentView(R.layout.layout_permission_dialog)
@@ -105,62 +248,6 @@ class MainActivity : BaseActivity<ActivityMainBinding> () {
 
     }
 
-    private fun callForDropDown() {
-        val actions=resources.getStringArray(R.array.actionList)
-         arrayAdapter = ArrayAdapter(this, R.layout.drop_down_item, actions)
-
-         autoCompletePlus = binding.autoCompleteActionsPlus
-        autoCompleteMinus = binding.autoCompleteActionsMinus
-        autoCompletePlus.setAdapter(arrayAdapter)
-        autoCompleteMinus.setAdapter(arrayAdapter)
-
-
-
-        //PLUS
-        binding.autoCompleteActionsPlus.setOnItemClickListener{parent, _, postion,_->
-            when(postion){
-                0-> {
-                    showToast("Default Action")
-                    MyApp.prefs.push("eventIDPlus",0)
-                }
-                1-> {
-                    showToast("TURN OFF SCREEN")
-                    MyApp.prefs.push("eventIDPlus",1)
-                }
-                2-> {
-                    showToast("OPEN POWER MENU")
-                    MyApp.prefs.push("eventIDPlus",2)
-                }
-                3-> {
-                    showToast("DO NOTHING")
-                    MyApp.prefs.push("eventIDPlus",3)
-                }
-            }
-        }
-
-        //MINUS
-        binding.autoCompleteActionsMinus.setOnItemClickListener{parent, _, postion,_->
-            when(postion){
-                0-> {
-                    showToast("Default Action")
-                    MyApp.prefs.push("eventIDMinus",0)
-                }
-                1-> {
-                    showToast("TURN OFF SCREEN")
-                    MyApp.prefs.push("eventIDMinus",1)
-                }
-                2-> {
-                    showToast("OPEN POWER MENU")
-                    MyApp.prefs.push("eventIDMinus",2)
-                }
-                3-> {
-                    showToast("DO NOTHING")
-                    MyApp.prefs.push("eventIDMinus",3)
-
-                }
-            }
-        }
-    }
 
     override fun onResume() {
         super.onResume()
