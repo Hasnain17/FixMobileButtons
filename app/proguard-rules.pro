@@ -19,3 +19,16 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+
+#Proguard rules for logs
+-assumenosideeffects class android.util.Log {
+    public static boolean isLoggable(java.lang.String, int);
+    public static *** d(...);
+    public static *** w(...);
+    public static *** v(...);
+    public static *** e(...);
+    public static *** i(...);
+}
+
+-keep class com.power.button.volume.keys.remap.model.*

@@ -12,9 +12,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="@dimen/_15sdp"
+        android:elevation="@dimen/_10sdp"
         tools:context=".ui.main.MainActivity"
         >
         <TextView
+            android:visibility="gone"
             android:id="@+id/tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -22,71 +25,105 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textFieldPlus"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cVTextFieldPlus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_65sdp"
             android:layout_marginHorizontal="@dimen/_50sdp"
+            app:rippleColor="@color/ripple_main_blue"
+            app:cardElevation="@dimen/_10sdp"
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:cardBackgroundColor="@color/white"
+            app:strokeColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
-            android:maxHeight="200dp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:hint="Volume + action"
-            app:hintAnimationEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv"
-            app:startIconTint="@color/main_blue"
-            app:startIconDrawable="@drawable/ic_plus">
-
-            <AutoCompleteTextView
-                android:id="@+id/autoCompleteActionsPlus"
+            >
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textFieldPlus"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:fontFamily="@font/baloo_bhaina_2"
-                android:inputType="none"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                app:boxStrokeColor="@color/white"
                 android:maxHeight="200dp"
-                android:textSize="@dimen/_14ssp"
-                tools:text="Default" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:hint="@string/volume_action_plus"
+                app:hintAnimationEnabled="true"
+                app:startIconTint="@color/main_blue"
+                app:startIconDrawable="@drawable/ic_plus">
 
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteActionsPlus"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/baloo_bhaina_2"
+                    android:inputType="none"
+                    android:maxHeight="200dp"
+                    android:textSize="@dimen/_14ssp"
+                    tools:text="Default" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textFieldMinus"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cVTextFieldMinus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_50sdp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:maxHeight="200dp"
+            app:rippleColor="@color/ripple_main_blue"
             android:layout_marginTop="@dimen/_15sdp"
-            android:hint="Volume - action"
-            app:hintAnimationEnabled="true"
+            android:layout_marginHorizontal="@dimen/_50sdp"
+            app:cardElevation="@dimen/_10sdp"
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:cardBackgroundColor="@color/white"
+            app:strokeColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textFieldPlus"
-            app:startIconTint="@color/main_blue"
-            app:startIconDrawable="@drawable/ic_minus">
+            app:layout_constraintTop_toBottomOf="@id/cVTextFieldPlus">
 
-            <AutoCompleteTextView
-                android:id="@+id/autoCompleteActionsMinus"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textFieldMinus"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:fontFamily="@font/baloo_bhaina_2"
-                android:inputType="none"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
                 android:maxHeight="200dp"
-                android:textSize="@dimen/_14ssp"
-                tools:text="Default" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:padding="@dimen/_5sdp"
+                android:hint="@string/volume_action"
+                app:hintAnimationEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textFieldPlus"
+                app:startIconTint="@color/main_blue"
+                app:startIconDrawable="@drawable/ic_minus">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteActionsMinus"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/baloo_bhaina_2"
+                    android:inputType="none"
+                    android:maxHeight="200dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14ssp"
+                    tools:text="Default" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
 
 
         <View
             android:id="@+id/viewCenter"
             android:layout_width="@dimen/_10sdp"
             android:layout_height="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            app:layout_constraintTop_toBottomOf="@id/cVTextFieldMinus"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <com.google.android.material.card.MaterialCardView

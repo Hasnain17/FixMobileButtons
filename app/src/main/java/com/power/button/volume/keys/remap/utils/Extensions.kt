@@ -50,7 +50,7 @@ fun isAccessibilityServiceEnabled(context: Context, service: Class<out Accessibi
 fun  Context.requestForAccessibilityPermission(){
     try {
         val intent = Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
-        /** request permission via start activity for result  */
+        /** request permission via StartActivity activity for result  */
         startActivity(intent)
     }
     catch (e:Exception){
