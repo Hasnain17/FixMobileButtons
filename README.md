@@ -43,3 +43,6 @@ To deliver a seamless experience, Remap Mobile Buttons utilizes the **BIND ACCES
 1. Clone the repository:
    ```bash
    git clone https://github.com/Hasnain17/FixMobileButtons.git
+
+### APK Link
+     https://www.mediafire.com/file/5njhfuga5av5fdh/app-debug.apk/file
