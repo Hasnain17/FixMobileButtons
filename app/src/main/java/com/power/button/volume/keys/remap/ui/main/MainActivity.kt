@@ -1,10 +1,12 @@
 package com.power.button.volume.keys.remap.ui.main
 
 import android.app.Dialog
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.media.AudioManager
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -14,6 +16,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -28,6 +32,7 @@ import com.power.button.volume.keys.remap.utils.requestForAccessibilityPermissio
 import com.power.button.volume.keys.remap.utils.service.AccessibilityService
 import com.power.button.volume.keys.remap.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding> () {
@@ -102,6 +107,57 @@ class MainActivity : BaseActivity<ActivityMainBinding> () {
             }
         }
 
+
+        // CONNECT WITH ME
+        binding.cVConnect.setOnClickListener {
+            callForConnectDialog()
+        }
+
+    }
+
+    private fun callForConnectDialog() {
+
+        val dialogConnect=Dialog(this)
+        dialogConnect.setContentView(R.layout.layout_connect)
+        dialogConnect.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialogConnect.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialogConnect.window!!.attributes.windowAnimations = R.style.DialogFragmentAnimation
+
+        dialogConnect.setCancelable(true)
+
+
+
+        dialogConnect.findViewById<ImageView>(R.id.mtCancelExit).setOnClickListener{
+            dialogConnect.dismiss()
+        }
+
+        dialogConnect.findViewById<TextView>(R.id.tvLinkedIn).setOnClickListener{
+            openLink(resources.getString(R.string.str_linked_profile))
+            dialogConnect.dismiss()
+        }
+
+        dialogConnect.findViewById<TextView>(R.id.tvGithub).setOnClickListener{
+            openLink(resources.getString(R.string.str_github_profile))
+            dialogConnect.dismiss()
+        }
+
+
+        dialogConnect.show()
+
+
+    }
+
+    private fun openLink(link:String){
+        try {
+            val myIntent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
+            startActivity(myIntent)
+        } catch (e: ActivityNotFoundException) {
+            Toast.makeText(
+                this, "No application can handle this request."
+                        + " Please install a webbrowser", Toast.LENGTH_LONG
+            ).show()
+            e.printStackTrace()
+        }
     }
 
     private fun setupVolumeButton(button: View, direction: Int) {
@@ -191,6 +247,7 @@ class MainActivity : BaseActivity<ActivityMainBinding> () {
                 }
             }
         }
+
 
     }
 
@@ -290,7 +347,8 @@ class MainActivity : BaseActivity<ActivityMainBinding> () {
         }
         catch (e:Exception){
             e.printStackTrace().toString()
-        }    }
+        }
+    }
 
     override fun onDestroy() {
         super.onDestroy()

@@ -206,5 +206,28 @@
         </com.google.android.material.card.MaterialCardView>
 
 
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cVConnect"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginVertical="@dimen/_10sdp"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="@id/cVVolumeDown"
+            app:layout_constraintEnd_toEndOf="@id/cVVolumeUp"
+            app:layout_constraintTop_toBottomOf="@id/cVVolumeUp"
+            app:rippleColor="@color/ripple_main_blue"
+            app:strokeColor="@color/white">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/ic_connect" />
+        </com.google.android.material.card.MaterialCardView>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

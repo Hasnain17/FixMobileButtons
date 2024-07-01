@@ -16,4 +16,9 @@
         Hence, to get the best of this application, turn on the Service</string>
     <string name="volume_action">Volume - action</string>
     <string name="volume_action_plus">Volume + action</string>
+    <string name="connect_with_me">Connect with me....</string>
+    <string name="str_linkedin">LinkedIn</string>
+    <string name="str_github">Github</string>
+    <string name="str_linked_profile">https://www.linkedin.com/in/muhammad-hasnain-altaf/</string>
+    <string name="str_github_profile">https://github.com/Hasnain17</string>
 </resources>
