@@ -45,4 +45,4 @@ To deliver a seamless experience, Remap Mobile Buttons utilizes the **BIND ACCES
    git clone https://github.com/Hasnain17/FixMobileButtons.git
 
 ### APK Link
-   https://www.mediafire.com/file/5njhfuga5av5fdh/app-debug.apk/file
+   [https://www.mediafire.com/file/5njhfuga5av5fdh/app-debug.apk/file](https://www.mediafire.com/file/4egee4awwk4fkf7/Fix_Mobile_Buttons.apk/file)
